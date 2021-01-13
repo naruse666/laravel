@@ -10,7 +10,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./laravel:/work
+      - ./worker:/work
       - php-fpm-socket:/var/run/php-fpm
     restart: always
     depends_on: 
@@ -21,7 +21,7 @@ services:
     build: ./docker/php/
     container_name: naruse_php
     volumes:
-      - ./laravel:/work
+      - ./worker:/work
       - php-fpm-socket:/var/run/php-fpm
     depends_on: 
       - db 
