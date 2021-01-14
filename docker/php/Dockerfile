@@ -1,4 +1,4 @@
-FROM    php:8.0-fpm-buster
+FROM    php:7.4-fpm-buster
 SHELL   ["/bin/bash", "-c"]
 ENV     TZ=Asia/Tokyo \
   #(本)production
