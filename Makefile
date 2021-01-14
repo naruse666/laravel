@@ -9,6 +9,10 @@ laravel:
 	docker-compose exec php chmod -R 777 storage bootstrap/cache
 	composer require "laravelcollective/html":"6.*"
 
+jetstream:
+	docker-compose exec php composer require laravel/jetstream
+	docker-compose exec php php artisan jetstream:install livewire 
+	@migrate
 build:
 	docker-compose build --no-cache
 
