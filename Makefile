@@ -7,7 +7,12 @@ down:
 laravel:
 	docker-compose exec php composer create-project --prefer-dist laravel/laravel . ^7.0
 	docker-compose exec php chmod -R 777 storage bootstrap/cache
-	composer require "laravelcollective/html":"6.*"
+	docker-compose exec php composer require "laravelcollective/html":"6.*"
+
+login_function:
+	@composer_update
+	docker-compose exec php composer require laravel/ui:2.*
+	docker-compose exec php php artisan ui vue --auth
 
 build:
 	docker-compose build --no-cache
@@ -29,3 +34,6 @@ migrate:
 
 tinker:
 	docker-compose exec php php artisan tinker
+
+composer_update:
+	docker-compose exec php composer update
