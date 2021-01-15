@@ -18,7 +18,7 @@ ENV     TZ=Asia/Tokyo \
         DB_CONNECTION=mysql \
         DB_HOST=db \
         DB_DATABASE=naruse_db \
-        DB_USERNAME=naruse \
+        DB_USERNAME=root \
         DB_PASSWORD=db_test
         
         #composer install
