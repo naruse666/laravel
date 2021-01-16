@@ -36,6 +36,7 @@ services:
 
   #node
   node:
+    container_name: naruse_node
     image: node:12.8-alpine
     volumes:
       - ./worker:/work
