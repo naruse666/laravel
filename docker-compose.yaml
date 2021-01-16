@@ -33,3 +33,10 @@ services:
       - db_store:/var/lib/mysql
     ports:
       - 3306:3306
+
+  #node
+  node:
+    image: node:12.8-alpine
+    volumes:
+      - ./worker:/work
+    working_dir: /work

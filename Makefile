@@ -10,7 +10,7 @@ laravel:
 	docker-compose exec php composer require "laravelcollective/html":"6.*"
 
 login_function:
-	@composer_update
+	@node
 	docker-compose exec php composer require laravel/ui:2.*
 	docker-compose exec php php artisan ui vue --auth
 
@@ -37,3 +37,7 @@ tinker:
 
 composer_update:
 	docker-compose exec php composer update
+
+node:
+	docker-compose run node npm install
+	docker-compose run node npm run dev
