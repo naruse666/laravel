@@ -13,6 +13,7 @@ login_function:
 	@node
 	docker-compose exec php composer require laravel/ui:2.*
 	docker-compose exec php php artisan ui vue --auth
+	@node
 
 build:
 	docker-compose build --no-cache
