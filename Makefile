@@ -1,44 +1,53 @@
-up:
-	docker-compose up -d
+EXEC := docker-compose exec
+COMPOSE := docker-compose
 
+up:
+	${COMPOSE} up -d
 down:
-	docker-compose down
+	${COMPOSE} down
 
 laravel:
-	docker-compose exec php composer create-project --prefer-dist laravel/laravel . ^7.0
-	docker-compose exec php chmod -R 777 storage bootstrap/cache
-	docker-compose exec php composer require "laravelcollective/html":"6.*"
+	${EXEC} php composer create-project --prefer-dist laravel/laravel . ^7.0
+	${EXEC} php chmod -R 777 storage bootstrap/cache
+	${EXEC} php composer require "laravelcollective/html":"6.*"
 
 login_function:
-	@node
-	docker-compose exec php composer require laravel/ui:2.*
-	docker-compose exec php php artisan ui vue --auth
-	@node
+	@make node
+	${EXEC} php composer require laravel/ui:2.*
+	${EXEC} php php artisan ui vue --auth
+	@make node
 
 build:
-	docker-compose build --no-cache
+	${COMPOSE} build --no-cache
 
 php:
-	docker-compose exec php bash
+	${EXEC} php bash
 
 nginx:
-	docker-compose exec nginx ash
+	${EXEC} nginx ash
 
 sql:
-	docker-compose exec db bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+	${EXEC} db bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
 
 logs:
-	docker-compose logs
+	${COMPOSE} logs
 
 migrate:
-	docker-compose exec php php artisan migrate
+	${EXEC} php php artisan migrate
+
+refresh:
+	${EXEC} php php artisan migrate:refresh
+	@make seed
+
+seed:
+	${EXEC} php php artisan db:seed --class=DatabaseSeeder
 
 tinker:
-	docker-compose exec php php artisan tinker
+	${EXEC} php php artisan tinker
 
 composer_update:
-	docker-compose exec php composer update
+	${EXEC} php composer update
 
 node:
-	docker-compose run node npm install
-	docker-compose run node npm run dev
+	${COMPOSE} run node npm install
+	${COMPOSE} run node npm run dev
