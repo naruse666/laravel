@@ -12,7 +12,6 @@ laravel:
 	${EXEC} php composer require "laravelcollective/html":"6.*"
 
 login_function:
-	@make node
 	${EXEC} php composer require laravel/ui:2.*
 	${EXEC} php php artisan ui vue --auth
 	@make node
