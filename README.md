@@ -8,4 +8,4 @@ If you watch makefile, you can start to Laravel so easily!
 
 But, if you execute ```make laravel```, installed laravel collective as default.
 
-```make login_function``` command is install laravel/ui  and automatically implement. 
+```make login_function``` command will install laravel/ui  and automatically implement. 
